@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.84.0">
+  <title>Видача завдань</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+
+  <!-- Custom styles for this template -->
+  <link href="form-validation.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container">
+  <main>
+    <div class="py-5 text-center">
+      <img class="d-block mx-auto mb-4" src="assets/brand/top.png" alt="" width="80" height="80">
+      <h2>Видача завдань</h2>
+      <p class="lead">test</p>
+    </div>
+
+    <div class="row g-5">
+      <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">Видача завдань</h4>
+        <form id="taskForm" class="needs-validation" novalidate>
+		
+		        <form class="needs-validation" novalidate>
+          <div class="row g-3">
+            <div class="col-12">
+              <label for="firstName" class="form-label">Ім'я пристрою</label>
+              <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                Valid first name is required.
+              </div>
+            </div>
+            <div class="col-12">
+              <label for="firstName" class="form-label">Тип пристрою</label>
+              <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                Valid first name is required.
+              </div>
+            </div>
+            <div class="col-12">
+              <label for="firstName" class="form-label">Текст завдання</label>
+              <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                Valid first name is required.
+              </div>
+            </div>
+			</div>
+<div class="col-12">
+              <label for="username" class="form-label">ДАТА</label>
+              <div class="input-group has-validation">
+               
+				<input type="date" class="form-control" id="date" name="date" placeholder="" required>
+                <div class="invalid-feedback">
+                 CHLEN
+                </div>
+              </div>
+            </div>
+
+           
+
+            <div class="col-md-5">
+              <label for="country" class="form-label">Country</label>
+              <select class="form-select" id="country" required>
+                <option value="">Choose...</option>
+                <option>United States</option>
+              </select>
+              <div class="invalid-feedback">
+                Please select a valid country.
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="state" class="form-label">State</label>
+              <select class="form-select" id="state" required>
+                <option value="">Choose...</option>
+                <option>California</option>
+              </select>
+              <div class="invalid-feedback">
+                Please provide a valid state.
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <label for="zip" class="form-label">Zip</label>
+              <input type="text" class="form-control" id="zip" placeholder="" required>
+              <div class="invalid-feedback">
+                Zip code required.
+              </div>
+            </div>
+         
+
+         
+         
+
+          <hr class="my-4">
+
+          <button  id="submitBtn" class="w-100 btn btn-primary btn-lg" type="submit">Continue</button>
+		  
+        <button id="submitBtn" class="w-100 btn btn-primary btn-lg" type="submit" data-bs-toggle="modal" data-bs-target="#responseModal">Continue to checkout</button>
+        </form>
+
+        
+      </div>
+	   
+
+    
+   <div class="col-md-5 col-lg-4">
+        <div class="d-flex flex-column">
+          <button class="btn btn-secondary mb-2" type="button">Button 1</button>
+          <button class="btn btn-secondary mb-2" type="button">Button 2</button>
+          <button class="btn btn-secondary mb-2" type="button">Button 3</button>
+          <button class="btn btn-secondary" type="button">Button 4</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2024</p>
+  </footer>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="responseModal" tabindex="-1" aria-labelledby="responseModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="responseModalLabel">Server Response</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p id="responseMessage"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="assets/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="form-validation.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#submitBtn').click(function(e) {
+      e.preventDefault();
+      $.ajax({
+        type: 'POST',
+        url: 'post.php',
+        data: $('#taskForm').serialize(),
+        success: function(response) {
+          $('#responseMessage').html(response);
+          $('#responseModal').modal('show');
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>
